@@ -1,5 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+# Assignment 01
+
+In this assignment, you will continue to work with the React application that you have been developing in the exercises. You will add a new component named DishdetailComponent that will display the details of a selected dish.
+
+You will then design the view for the component using the card component. At the end of this assignment, you should have completed the following tasks:
+
+* Created a new DishdetailComponent and added it to your React application. 
+* Updated the view of the DishdetailComponent to display the details of the selected dish using an reactstrap card component.
+* Updated the view of the DishdetailComponent to display the list of comments about the dish using the Bootstrap unstyled list component.
+
+
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
