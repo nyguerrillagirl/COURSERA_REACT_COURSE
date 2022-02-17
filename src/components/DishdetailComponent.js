@@ -10,16 +10,14 @@ class DishDetail extends Component {
      renderDish(dish) {
         if (dish !== null) {
             return(
-                <div className="col-md-5 col-sm-12 m-2">
                     <Card>
-                    <CardImg  width="40%" src={dish.image} alt={dish.name} />
-                        <CardBody>
-                            <CardTitle>{dish.name}</CardTitle> 
-                            <CardText>{dish.description}</CardText>
-                        </CardBody>
+                        <CardImg src={dish.image} alt={dish.name} />
+                            <CardBody>
+                                <CardTitle>{dish.name}</CardTitle> 
+                                <CardText>{dish.description}</CardText>
+                            </CardBody>
                     </Card>
-                </div>
-              );
+               );
         } else {
             return(
                 <div></div>
@@ -29,17 +27,11 @@ class DishDetail extends Component {
 
     getCommentList(commentList) {
         const comments = commentList.map((aComment) => {
-             // From: https://www.codegrepper.com/code-examples/javascript/day+month+date+year+format+in+javascript
-            let d = new Date(aComment.date)
-            const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
-            const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
-            const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
-            const commentDate = mo + " " + da + ", " + ye;
-             return(
+              return(
                 <li className="list-group-item">
                     <div>{aComment.comment}</div>
                     <p></p>
-                    <div>-- {aComment.author} {commentDate}</div>                   
+                    <div>-- {aComment.author} {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(aComment.date)))}</div>                   
                 </li>
             )
         });
@@ -52,7 +44,7 @@ class DishDetail extends Component {
         if (dish !== null && dish.comments != null) {
             const commentList = this.getCommentList(dish.comments);
             return(
-                <div className="col-md-5 col-sm-12 m-0">
+                <div>
                     <h4><strong>Comments</strong></h4>
                     <ul className="list-group">
                     {commentList}
@@ -67,16 +59,27 @@ class DishDetail extends Component {
     }
 
     render() {
-        const dish = this.props.selectedDish;
-        const dishDetailPart = this.renderDish(dish);
-        const dishCommentPart = this.renderComments(dish);
-         return(
-
-             <div className="row">
-                {dishDetailPart}
-                {dishCommentPart}
-             </div>     
-          );
+        const dish = this.props.dish;
+        if (dish) {
+            const dishDetailPart = this.renderDish(dish);
+            const dishCommentPart = this.renderComments(dish);
+            return(
+                <div className="container">
+                <div className="row">
+                 <div  className="col-12 col-md-5 m-1">
+                    {dishDetailPart}
+                </div>
+                <div  className="col-12 col-md-5 m-1">
+                    {dishCommentPart}
+                </div>
+                </div>    
+                </div> 
+            );
+        } else {
+            return(
+                <div></div> 
+            );
+        }    
     }
 }
 
