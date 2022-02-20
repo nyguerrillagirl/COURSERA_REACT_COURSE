@@ -1,8 +1,19 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-# Week 2
+# Assignment 2
 
 # React Router and Single Page Applications
+
+In this assignment you will continue working with the React application by adding a new component named AboutComponent to serve up the details of the corporate leaders, and you will then integrate the AboutComponent into the single page application.
+
+Objectives and Outcomes
+
+At the end of this assignment, you should have completed the following tasks:
+
+* Integrated the AboutComponent given above into the single page application.
+* Added a new functional component named <RenderLeader> through the RenderLeader() function to AboutComponent.js that renders the details of a given leader using the reactstrap <Media> component.
+* Construct and render the list of leaders in the About Us page using the <RenderLeader> component implemented above.
+
 
 
 Below you will find some information on how to perform common tasks.<br>
