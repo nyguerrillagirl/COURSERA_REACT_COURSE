@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup, Label, Input, Col, Row,  FormFeedback} from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Button, Form, FormGroup, Label, Input, Col, FormFeedback} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class Contact extends Component {
@@ -71,7 +71,7 @@ class Contact extends Component {
         if (this.state.touched.telnum && !reg.test(telnum)) {
             errors.telnum = 'Tel. Number should contain only numbers';
         }
-        if (this.state.touched.email && email.split('').filter(x => x === '@').length != 1) {
+        if (this.state.touched.email && email.split('').filter(x => x === '@').length !== 1) {
             errors.email = 'Email should contain an @ sign';
         }
         return errors;
