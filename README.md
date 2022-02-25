@@ -1,15 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-# Week 3
+# Assignment 3
 
 # React Forms, Flow Architecture and Introduction to Redux
 
-## Learning Objectives
+In this assignment you will update the DishdetailComponent.js to include a form and do the form validation in code. At the end of this assignment, you should have completed the following tasks to update the page:
 
-* Create uncontrolled React forms
-* Create controlled forms and perform form validation
-* Discuss the features of the Flux architecture
+* Added a new class component named CommentForm to DishdetailComponent.js.
+* Provide a form to enable users to submit their comments
+* Validate the information entered by the users in the form
 
+
+Note, no new files are added to the project. We only update the DishdetailComponent.
 
 
 Below you will find some information on how to perform common tasks.<br>
