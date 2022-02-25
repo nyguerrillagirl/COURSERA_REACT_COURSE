@@ -1,6 +1,38 @@
-import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import React, { Component } from 'react';
+import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button,
+    Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { Link } from 'react-router-dom'
+
+class CommentForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isModalOpen: false
+        }
+        this.toggleModal = this.toggleModal.bind(this);
+    }
+
+    toggleModal() {
+        this.setState({
+            isModalOpen: !this.state.isModalOpen
+        })
+    }
+    render() {
+        return (
+            <div>
+            <Button type="button" className="btn btn-outline-dark mt-3" onClick={this.toggleModal} >
+                <span className="fa fa-pencil"> Submit Comment</span>
+            </Button>
+            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
+                <ModalBody>
+                    Hi, Mom!
+                </ModalBody>
+            </Modal>
+            </div>
+        );
+    }
+}
 
 function RenderDish({ dish }) {
     if (dish !== null) {
@@ -56,8 +88,8 @@ const DishDetail = (props) => {
             <div className="container">
                 <div className="row">
                     <Breadcrumb>
-                       <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
-                       <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
                     </Breadcrumb>
                     <div className="col-12">
                         <h3>{props.dish.name}</h3>
@@ -71,6 +103,7 @@ const DishDetail = (props) => {
                     </div>
                     <div className="col-12 col-md-5 m-1">
                         <RenderComments comments={props.comments} />
+                        <CommentForm></CommentForm>
                     </div>
                 </div>
             </div>
