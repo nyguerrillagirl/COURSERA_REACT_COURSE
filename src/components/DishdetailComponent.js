@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button,
-    Modal, ModalHeader, ModalBody } from 'reactstrap';
+import {
+    Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button,
+    Modal, ModalHeader, ModalBody, Label, Col, Row
+} from 'reactstrap';
 import { Link } from 'react-router-dom'
+import { Control, LocalForm, Errors } from 'react-redux-form';
 
 class CommentForm extends Component {
     constructor(props) {
@@ -10,6 +13,7 @@ class CommentForm extends Component {
             isModalOpen: false
         }
         this.toggleModal = this.toggleModal.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     toggleModal() {
@@ -17,18 +21,65 @@ class CommentForm extends Component {
             isModalOpen: !this.state.isModalOpen
         })
     }
+
+    handleSubmit(values) {
+        // Check if rating is in the values
+        let formValues = Object.assign({}, values);
+        if (!formValues.rating) {
+            formValues = { rating: 1, ...formValues} ;
+        }
+        console.log("===> Current values is: " + JSON.stringify(formValues));
+        alert("Current form values is: " + JSON.stringify(formValues));
+        this.toggleModal();
+    }
+
     render() {
         return (
             <div>
-            <Button type="button" className="btn btn-outline-dark mt-3" onClick={this.toggleModal} >
-                <span className="fa fa-pencil"> Submit Comment</span>
-            </Button>
-            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
-                <ModalBody>
-                    Hi, Mom!
-                </ModalBody>
-            </Modal>
+                <Button type="button" className="btn btn-outline-dark mt-3" onClick={this.toggleModal} >
+                    <span className="fa fa-pencil"> Submit Comment</span>
+                </Button>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}><strong>Submit Comment</strong></ModalHeader>
+                    <ModalBody>
+                        <LocalForm onSubmit={(values) => this.handleSubmit(values)} className="m-2">
+                            <div className="form-group">
+                                <Label htmlFor="rating">Rating</Label>
+
+                                <Control.select model=".rating" name="rating" id="rating"
+                                    className="form-control">
+                                    <option selected>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </Control.select>
+                            </div>
+                            <div className="form-group">
+                                <Label htmlFor="author">Your Name</Label>
+                                <Control.text model=".author" name="author" id="author"
+                                    placeholder="Your Name"
+                                    className="form-control">
+
+                                </Control.text>
+                            </div>
+                            <div className="form-group">
+                                <Label htmlFor="comments">Comment</Label>
+                                <Control.textarea model=".author_comment" name="author_comment"
+                                    id="author_comment"
+                                    className="form-control"
+                                    rows="6">
+                                </Control.textarea>
+                            </div>
+                            <div>
+                                <Button type="submit" color="primary">
+                                    Submit
+                                </Button>
+
+                            </div>
+                        </LocalForm>
+                    </ModalBody>
+                </Modal>
             </div>
         );
     }
