@@ -8,7 +8,7 @@ In this assignment you will update the DishdetailComponent.js to include a form 
 
 * Added a new class component named CommentForm to DishdetailComponent.js.
 * Provide a form to enable users to submit their comments
-* Validate the information entered by the users in the form
+* Validate the information entered by the users in the form comment
 
 
 Note, no new files are added to the project. We only update the DishdetailComponent.
