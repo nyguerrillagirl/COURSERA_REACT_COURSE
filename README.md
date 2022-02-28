@@ -1,17 +1,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-# Assignment 3
+# Week #4
 
-# React Forms, Flow Architecture and Introduction to Redux
+# More Redux and Client-Server Communication
 
-In this assignment you will update the DishdetailComponent.js to include a form and do the form validation in code. At the end of this assignment, you should have completed the following tasks to update the page:
+## Learning Objectives
+* Create Redux Actions
+* Develop Redux actions using Redux Thunk
+* Develop client-server communication using Fetch
 
-* Added a new class component named CommentForm to DishdetailComponent.js.
-* Provide a form to enable users to submit their comments
-* Validate the information entered by the users in the form comment
 
-
-Note, no new files are added to the project. We only update the DishdetailComponent.
 
 
 Below you will find some information on how to perform common tasks.<br>
