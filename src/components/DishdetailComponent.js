@@ -27,14 +27,14 @@ class CommentForm extends Component {
 
     handleSubmit(values) {
         // Check if rating is in the values
+        this.toggleModal();
         let formValues = Object.assign({}, values);
         if (!formValues.rating) {
             formValues = { rating: 1, ...formValues} ;
         }
-        console.log("===> Current values is: " + JSON.stringify(formValues));
-        alert("Current form values is: " + JSON.stringify(formValues));
-        this.toggleModal();
-    }
+        this.props.addComment(this.props.dishId, formValues.rating, formValues.author, 
+            formValues.comment);
+     }
 
     render() {
         return (
@@ -80,8 +80,8 @@ class CommentForm extends Component {
                             </div>
                             <div className="form-group">
                                 <Label htmlFor="comments">Comment</Label>
-                                <Control.textarea model=".author_comment" name="author_comment"
-                                    id="author_comment"
+                                <Control.textarea model=".comment" name="comment"
+                                    id="comment"
                                     className="form-control"
                                     rows="6">
                                 </Control.textarea>
@@ -132,7 +132,7 @@ function getCommentList(commentList) {
 
 }
 
-function RenderComments({ comments }) {
+function RenderComments({ comments, addComment, dishId }) {
 
     const commentList = getCommentList(comments);
     return (
@@ -141,6 +141,7 @@ function RenderComments({ comments }) {
             <ul className="list-group">
                 {commentList}
             </ul>
+            <CommentForm dishId={dishId} addComment={addComment}></CommentForm>
         </div>
     );
 
@@ -168,8 +169,9 @@ const DishDetail = (props) => {
                         <RenderDish dish={props.dish} />
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <RenderComments comments={props.comments} />
-                        <CommentForm></CommentForm>
+                        <RenderComments comments={props.comments} 
+                        addComment={props.addComment} dishId={props.dish.id} />
+                        
                     </div>
                 </div>
             </div>
