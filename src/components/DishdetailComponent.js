@@ -4,6 +4,7 @@ import {
     Modal, ModalHeader, ModalBody, Label } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
@@ -32,6 +33,7 @@ class CommentForm extends Component {
         if (!formValues.rating) {
             formValues = { rating: 1, ...formValues} ;
         }
+        // We trigger the event of a new comment being added by the user
         this.props.addComment(this.props.dishId, formValues.rating, formValues.author, 
             formValues.comment);
      }
@@ -148,9 +150,27 @@ function RenderComments({ comments, addComment, dishId }) {
 }
 
 const DishDetail = (props) => {
+    if (props.isLoading) {
+        return (
+            <div className="container">
+                <div classnName="row">
+                    <Loading />
+                </div>
+            </div>
+        );
+    } else if (props.errMess) {
+        return (
+            <div className="container">
+                <div classnName="row">
+                    <h4>{props.errMess}</h4>
+                </div>
+            </div>
+        );
+       
+    }
+    // BAU
     const dish = props.dish;
-    console.log("===> dish sent", dish.name);
-    if (dish) {
+     if (dish) {
         return (
             <div className="container">
                 <div className="row">
