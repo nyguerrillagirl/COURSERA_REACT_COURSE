@@ -16,8 +16,6 @@ export const Comments = (state = {
             // This executes or handles the add comment action 
             // It updates the list of comments
             var comment = action.payload;
-            comment.id = state.comments.length;
-            comment.date = new Date().toISOString();
             return {...state, comments: state.comments.concat(comment)};
         default:
             return state;
