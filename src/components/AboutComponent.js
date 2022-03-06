@@ -2,6 +2,7 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { baseUrl } from '../shared/baseUrl';
+import { Loading } from './LoadingComponent';
 
 function RenderLeader({ leader }) {
     return (
@@ -22,12 +23,28 @@ function RenderLeader({ leader }) {
 function About(props) {
 
 
-    const leaders = props.leaders.map((leader) => {
-        return (
+    const leaders = props.leaders.leaders.map((leader) => {
+         return (
             <RenderLeader leader={leader} />
         );
     });
-
+    if (props.leaders.isLoading) {
+        return (
+            <div className="container">
+                <div classnName="row">
+                    <Loading />
+                </div>
+            </div>
+        );
+    } else if (props.leaders.errMess) {
+        return (
+            <div className="container">
+                <div classnName="row">
+                    <h4>{props.leaders.errMess}</h4>
+                </div>
+            </div>
+        );
+    }  
     return (
         <div className="container">
             <div className="row">
