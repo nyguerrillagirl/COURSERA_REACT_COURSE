@@ -8,7 +8,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+import { postFeedback, postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -23,7 +23,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   // This dispatchs the add comment event to the dispatcher
-  postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
+  postComment: (dishId, rating, author, comment) => 
+          dispatch(postComment(dishId, rating, author, comment)),
+  postFeedback: (feedbackObj) => dispatch(postFeedback(feedbackObj)),
   fetchDishes: () => {dispatch(fetchDishes())},
   fetchComments: () => {dispatch(fetchComments())},
   fetchPromos: () => {dispatch(fetchPromos())},
@@ -37,7 +39,6 @@ class Main extends Component {
     super(props);
   }
   componentDidMount() {
-    console.log("===> componentDidMount()");
     this.props.fetchDishes();
     this.props.fetchComments();
     this.props.fetchPromos();
@@ -82,7 +83,8 @@ class Main extends Component {
               <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
               <Route path="/menu/:dishId" component={DishWithId} />
               <Route exact path="/contactus" 
-                component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />}  />
+                component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm}
+                                    postFeedback={this.props.postFeedback} />}  />
               <Route exact path="/aboutus" component={() => <About leaders={this.props.leaders} />} />
               <Redirect to="/home" />
             </Switch>
