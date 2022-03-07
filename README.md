@@ -1,15 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-# Assignment #4
+# After  Week 4 - Build and Deployment
 
-## More Redux, Client-Server Communication and Fetch
-
-At the end of this assignment, you should have completed the following:
-
-* Introduced new action types and action creators to support the fetching of the leaders information from the server and update the Redux store.
-* Updated the Home and the About component to render the information about the leaders using the downloaded data from the server
-* Add simple animations to the About component where the leaders information is displayed.
-* Enabled the users to submit feedback through the feedback form by creating a new feedback service that accepts the form data and uses Restangular to record their feedback on the server.
+Final version of the project for the course
 
 
 
